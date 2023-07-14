@@ -11,10 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
+
 
 @Service
 public class OrderService {
@@ -28,11 +27,10 @@ public class OrderService {
     public void create(Order order) {
         User user = order.getUser();
         user.addOrder(order);
-
         userService.create(user);
-
         List<Product> products = order.getProducts();
         products.forEach(product -> product.addOrder(order));
+//        oderRepository=null;
         oderRepository.save(order);
     }
 
