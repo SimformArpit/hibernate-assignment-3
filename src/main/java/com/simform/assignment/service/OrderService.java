@@ -36,7 +36,7 @@ public class OrderService {
         oderRepository.save(order);
     }
 
-    @Transactional(isolation = Isolation.REPEATABLE_READ)
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public List<Order> getAll() {
         List<Order> orderList = oderRepository.findAll();
         if (orderList.size() == 0) {
@@ -46,7 +46,7 @@ public class OrderService {
         }
     }
 
-    @Transactional(isolation = Isolation.REPEATABLE_READ)
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public Order getById(Long id) {
         Optional<Order> orderById = oderRepository.findById(id);
         if (orderById.isEmpty()) {

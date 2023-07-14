@@ -17,7 +17,7 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    @Transactional(isolation = Isolation.REPEATABLE_READ)
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public User getById(Long id) {
         Optional<User> byId = userRepository.findById(id);
         if (byId.isPresent()) {
